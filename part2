@@ -1,0 +1,32 @@
+# Part 1
+import re  # Importing the regular expression module
+
+# Opening the input file in read mode and assigning its content to the variable 'data'
+with open("input.txt") as f:
+    data = f.read().strip()
+
+# Defining 'calibration' which takes 'data' as input
+def calibration(data):
+    ls = data.split("\n")  # Splitting the input data by newline character and storing each line in a list 'ls'
+    ns = [re.findall("\d", x) for x in ls]  # Extracting all digit characters from each line using regular expression and storing them in a list 'ns'
+    # Calculating the sum of the first and last digit of each group of digits in 'ns'
+    return sum(int(n[0] + n[-1]) for n in ns)
+
+# Calling the 'calibration' function with 'data' as argument and printing the result
+print(calibration(data))
+
+# Part 2
+# Define the string 'data'
+data = (
+  data.replace("one", "one1one")
+  .replace("two", "two2two")
+  .replace("three", "three3three")
+  .replace("four", "four4four")
+  .replace("five", "five5five")
+  .replace("six", "six6six")
+  .replace("seven", "seven7seven")
+  .replace("eight", "eight8eight")
+  .replace("nine", "nine9nine")
+)
+# Print the result of the 'calibration' function applied to 'data'
+print(calibration(data))
